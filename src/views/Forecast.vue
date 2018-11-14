@@ -13,6 +13,12 @@
         <input type="submit" class="btn btn-primary" value="submit">
       </form>
     </div>
+    {{ weatherData.name }} |
+    {{ weatherData.main.temp }} |
+    {{ weatherData.main.pressure }} |
+    {{ weatherData.main.humidity }}
+
+
   </div>
 </template>
 
@@ -23,8 +29,17 @@ export default {
   data: function() {
     return {
       primary_zip: "",
-      errors: []
+      errors: [],
+      weatherData: {}
     };
+  },
+  created: function() {
+    axios
+      .get("http://localhost:3000/api/forecasts")
+      .then(response => {
+        console.log(response.data);
+        this.weatherData=response.data
+      });
   },
   methods: {
     submit: function() {

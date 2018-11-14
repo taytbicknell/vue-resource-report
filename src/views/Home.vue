@@ -5,6 +5,9 @@
 </template>
 
 <style>
+  body {
+  background: url("../assets/forestbridge.jpg")
+  } 
 </style>
 
 <script>
