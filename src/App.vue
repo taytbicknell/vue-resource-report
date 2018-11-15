@@ -1,36 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/forecast">Forecast</router-link> |
-<!--       <router-link to="/about">About</router-link> | -->
-      <router-link to="/login">Login</router-link> |
-<!--       <router-link to="/logout">Logout</router-link> | -->
-      <router-link to="/signup">Signup</router-link>
+      <a href="/#/">Home</a> |
+      <a href="/d3index.html">Forecast</a> |
+      <a href="/#/login">Login</a> |
+      <a href="/#/logout">Logout</a> |
+      <a href="/#/profile">Profile</a> |
+      <a href="/#/signup">Signup</a>
     </div>
     <router-view/>
+    <link rel="stylesheet" href="../public/index.css">
   </div>
 </template>
-
-<style scoped>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #e8e7e5;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #e8e7e5;
-}
-
-#nav a.router-link-exact-active {
-  color: #f4f3f2;
-}
-</style>

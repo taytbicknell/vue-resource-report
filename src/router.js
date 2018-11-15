@@ -5,6 +5,7 @@ import Signup from "./views/Signup.vue";
 import Login from "./views/Login.vue";
 import Logout from "./views/Logout.vue";
 import Forecast from "./views/Forecast.vue";
+import UsersShow from "./views/UsersShow.vue";
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: "/forecast",
       name: "forecast",
       component: Forecast
+    },
+    {
+      path: "/profile",
+      name: "users-show",
+      component: UsersShow
     }
   ]
 });

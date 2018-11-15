@@ -13,12 +13,6 @@
         <input type="submit" class="btn btn-primary" value="submit">
       </form>
     </div>
-    {{ weatherData.name }} |
-    {{ weatherData.main.temp }} |
-    {{ weatherData.main.pressure }} |
-    {{ weatherData.main.humidity }}
-
-
   </div>
 </template>
 

@@ -1,54 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rsource Report</title>
-  <style>
-    html, body {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-      font-family: Helvetica, Calibri, Roboto, Open Sans, sans-serif
-      -webkit-backface-visibility: hidden;
-    }
-    * {
-      box-sizing: inherit;
-    }
-    h1 {
-      text-align: center;
-    }
-    svg {
-      margin:auto;
-      display:circle;
-    }
-
-    .circle-overlay {
-      font-size: 16px;
-      border-radius: 10%;
-      position: absolute;
-      overflow: hidden;
-      /*it's buggy with the foreignObject background right now*/
-      /*background-color: rgba(255,255,255,0.5);*/
-    }
-    .circle-overlay__inner {
-      text-align: center;
-      width: 100%;
-      height: 100%;
-    }
-
-    .hidden {
-      display: none;
-    }
-    .node-icon--faded {
-      opacity: 0.5;
-    }
-    .legend-size circle {
-      fill: rgb(31, 119, 180);
-    }
-  </style>
+  <title>Resource Report</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
+  <div id="app">
+    <div id="nav">
+      <a href="/#/">Home</a> |
+      <a href="/d3index.html">Forecast</a> |
+      <a href="/#/login">Login</a> |
+      <a href="/#/profile">Profile</a> |
+      <a href="/#/signup">Signup</a>
+    </div>
+  </div>
   <h1>Resource Report</h1>
-  <svg width="100%" height="700" font-family="sans-serif" font-size="10" text-anchor="middle"></svg>
+  <svg width="100%" height="700" font-family="sans-serif" font-size="50" text-anchor="middle"></svg>
 
   <script src="js/d3.min.js"></script>
   <script src="js/d3-legend.min.js"></script>
@@ -59,10 +26,11 @@
     if (jwt) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
     }
+    var zip = localStorage.getItem("zip");
     var weatherData;
     var data;
     axios
-      .get("http://localhost:3000/api/forecasts")
+      .get("http://localhost:3000/api/forecasts", zip)
       .then(response => {
         weatherData = response.data;
         console.log(weatherData);
@@ -85,19 +53,19 @@
               icon: 'img/pressure.png',
               desc: `
                 Current Air Pressure in ` + weatherData.name
-          },
-          {
+            },
+            {
               cat: 'wind', name: 'Current Wind Speed', value: weatherData.wind.speed,
               icon: 'img/temp.png',
               desc: `
                 Current Wind speed in ` + weatherData.name
-          }, 
-          {
+            },
+            {
               cat: 'clouds', name: 'Current Cloud Cover', value: weatherData.clouds.all,
               icon: 'img/temp.png',
               desc: `
                 Current Cloud Cover in ` + weatherData.name
-          }
+            }
           ];
 
           let svg = d3.select('svg');
@@ -156,7 +124,6 @@
           });
           simulation.nodes(nodes).on('tick', ticked);
 
-          svg.style('background-color', '#eee');
           let node = svg.selectAll('.node')
             .data(nodes)
             .enter().append('g')
