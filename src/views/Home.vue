@@ -32,7 +32,7 @@ export default {
   methods: {
     submit: function() {
    localStorage.setItem("zip", this.zip);
-        router.push("/#/d3index.html");
+    window.location.href = "/d3index.html"
       } 
   },
   computed: {}

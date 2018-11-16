@@ -30,7 +30,7 @@
     var weatherData;
     var data;
     axios
-      .get("http://localhost:3000/api/forecasts", zip)
+      .get("http://localhost:3000/api/forecasts?zip=" + zip)
       .then(response => {
         weatherData = response.data;
         console.log(weatherData);
